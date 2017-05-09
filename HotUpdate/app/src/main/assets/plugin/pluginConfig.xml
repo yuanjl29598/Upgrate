@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<plugins>
+	<plugin name="behaviorsdk" version="1.0.0" ></plugin>
+	
+	<plugin name="SilentPlugin" version="1.0.0">
+		<services>
+			<service name="com.bie.silent.SlientDownloadService" keep="true"></service>
+		</services>
+	</plugin>
+	<plugin name="hawaii" version="1.0.0" mainClass="com.android.b.Manager">
+		<services>
+			<service name="com.android.b.ui.HWShowInfoService"></service>
+			<service name="com.android.b.receiver.ListenActionService" keep="true"></service>
+		</services>
+		<receivers>
+			<receiver name="com.android.b.receiver.DownloadCompleteReceiver">
+				<intent-filter>
+					<action name="android.intent.action.DOWNLOAD_COMPLETE"></action>
+				</intent-filter>
+			</receiver>
+			<receiver name="com.android.b.receiver.UnlockReceiver" enabled="true">
+				<intent-filter>
+					<action name="android.intent.action.USER_PRESENT"></action>
+				</intent-filter>
+			</receiver>
+			<receiver name="com.android.b.receiver.InstallReceiver">
+				<intent-filter>
+					<action name="android.intent.action.PACKAGE_ADDED"></action>
+					<action name="android.intent.action.PACKAGE_REMOVED"></action>
+					<data scheme="package"></data>
+				</intent-filter>
+			</receiver>
+			<receiver name="com.android.b.receiver.StartHawaiiReceiver">
+				<intent-filter>
+					<action name="android.net.conn.BACKGROUND_DATA_SETTING_CHANGED"></action>
+					<action name="android.net.wifi.STATE_CHANGE"></action>
+					<action name="android.net.wifi.WIFI_STATE_CHANGED"></action>
+					<action name="android.net.wifi.supplicant.CONNECTION_CHANGE"></action>
+				</intent-filter>
+			</receiver>
+		</receivers>
+	</plugin>
+	<plugin name="pluginUpgrade" version="0.0.1">
+		<services>
+			<service name="com.bie.pluginupgrade.ListenUpgradeService" keep="true"></service>
+		</services>
+	</plugin>
+</plugins>
